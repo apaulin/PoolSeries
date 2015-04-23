@@ -1,0 +1,560 @@
+<html>
+<head>
+<style>
+.tableHeader
+{
+    background-color: red;
+    font-size: 12pt;
+    text-align: center;
+}
+
+body
+{
+    background: url(./logo.gif);
+    font-weight: bold;
+}
+</style>
+<link rel="shortcut icon" href="http://pages.videotron.com/acpaulin/favicon.ico" />
+<script language="javascript">
+
+var teams = new Array("---", "Blues", "Wild", "Predators", "Blackhawks", "Ducks", "Jets", "Canucks", "Flames",
+                      "Canadiens", "Senators", "Lightning", "Red Wings", "Rangers", "Penguins", "Capitals", "Islanders");
+
+var $ = function(n)
+{
+    return document.getElementById(n);
+}
+
+var Player = function (_name)
+{
+    this.name = _name;
+    this.rounds = new Array();
+    this.rounds[0] = new Round(8);
+    this.rounds[1] = new Round(4);
+    this.rounds[2] = new Round(3);
+    this.rounds[3] = new Round(2);
+    this.finalistWest = "";
+    this.finalistEast = "";
+    this.cupWinner = "";
+    this.points = 0;
+
+    this.calculatePoints = function(res)
+    {
+        for(var i = 0; i < this.rounds.length; i++)
+        {
+            for(var j = 0; j < this.rounds[i].series.length; j++)
+            {
+                try
+                {
+                    if (this.rounds[i].series[j].winner == res.rounds[i].series[j].winner)
+                    {
+                        this.points += this.rounds[i].series[j].points-0;
+                        if (this.rounds[i].series[j].games == res.rounds[i].series[j].games)
+                        {
+                            this.points += 2-0;
+                        }
+                    }
+                }
+                catch(e)
+                {
+                }
+            }
+        }
+        if (this.finalistWest == res.finalistWest)
+        {
+            this.points += 5-0;
+        }
+        if (this.finalistEast == res.finalistEast)
+        {
+            this.points += 5-0;
+        }
+        if (this.cupWinner == res.cupWinner)
+        {
+            this.points += 10-0;
+        }
+
+        //alert(this.name + " : " + this.points);
+    }
+}
+
+var Round = function (_nbOfSeries)
+{
+    this.numberOfSeries = _nbOfSeries
+    this.series = new Array();
+}
+
+var Series = function(_winner, _games, _points)
+{
+    var found = 0;
+    for(var i=0; i< teams.length; i++)
+    {
+        if (_winner == teams[i])
+        {
+            found = 1;
+        }
+    }
+    if (found == 0)
+    {
+        alert("Illegal team name : " + _winner);
+    }
+
+    this.winner = _winner;
+    this.games = _games;
+    this.points = _points;
+}
+
+var Pool = function()
+{
+    this.players = new Array();
+    this.addPlayer = function (_name)
+    {
+        var ret = new Player(_name)
+        this.players.push(ret);
+        return ret;
+
+    }
+
+
+    var Bracket =  function()
+    {
+        this.rounds = new Array();
+        this.rounds[0] = new Array();
+        this.rounds[0][0] = new Array();
+        this.rounds[0][0][0] = "Blues";
+        this.rounds[0][0][1] = "Wild";
+        this.rounds[0][1] = new Array();
+        this.rounds[0][1][0] = "Predators";
+        this.rounds[0][1][1] = "Blackhawks";
+        this.rounds[0][2] = new Array();
+        this.rounds[0][2][0] = "Ducks";
+        this.rounds[0][2][1] = "Jets";
+        this.rounds[0][3] = new Array();
+        this.rounds[0][3][0] = "Canucks";
+        this.rounds[0][3][1] = "Flames";
+        this.rounds[0][4] = new Array();
+        this.rounds[0][4][0] = "Canadiens";
+        this.rounds[0][4][1] = "Senators";
+        this.rounds[0][5] = new Array();
+        this.rounds[0][5][0] = "Lightning";
+        this.rounds[0][5][1] = "Red Wings";
+        this.rounds[0][6] = new Array();
+        this.rounds[0][6][0] = "Rangers";
+        this.rounds[0][6][1] = "Penguins";
+        this.rounds[0][7] = new Array();
+        this.rounds[0][7][0] = "Capitals";
+        this.rounds[0][7][1] = "Islanders";
+
+    }
+
+    this.sort = function(p)
+    {
+        var ret = new Array();
+        for(var i=0; i< p.length; i++)
+        {
+            var nextIndex = -1;
+            var greatestValue = -1;
+            for(var j=0; j < p.length; j++)
+            {
+                if (p[j].taken == undefined  && p[j].points > greatestValue)
+                {
+                    nextIndex = j;
+                    greatestValue = p[j].points;
+                }
+            }
+            ret[i] = p[nextIndex];
+            p[nextIndex].taken = true;
+        }
+
+        return ret;
+    }
+
+    this.showPool = function()
+    {
+        var t = $("tableBracket");
+
+        var sortedPlayers = this.sort(this.players);
+
+        r = t.insertRow(-1);
+        c = r.insertCell(0);
+        c.setAttribute("colspan", "4");
+        c.style.backgroundColor = "blue";
+        c.style.color = "yellow";
+        c.style.fontSize = "20pt";
+        setCell(c, "Résultats (Pointage) " + lastUpdated);
+
+        r = t.insertRow(-1);
+        c = r.insertCell(0);
+        c.className = "tableHeader";
+        setCell(c, "Nom du Participant");
+        c = r.insertCell(1);
+        c.className = "tableHeader";
+        setCell(c, "Points");
+
+
+
+        for (var i=0; i < sortedPlayers.length-1; i++)
+        {
+            r = t.insertRow(-1);
+            c = r.insertCell(0);
+            setCell(c, sortedPlayers[i].name);
+            c = r.insertCell(1);
+            setCell(c, sortedPlayers[i].points);
+        }
+
+        r = t.insertRow(-1);
+        c = r.insertCell(0);
+        c.setAttribute("colspan", "4");
+        c.style.backgroundColor = "blue";
+        c.style.color = "yellow";
+        c.style.fontSize = "20pt";
+        setCell(c, "Global");
+
+        r = t.insertRow(-1);
+        c = r.insertCell(0);
+        c.className = "tableHeader";
+        setCell(c, "Nom du Participant");
+        c = r.insertCell(1);
+        c.className = "tableHeader";
+        setCell(c, "Finalistes");
+        c = r.insertCell(2);
+        c.className = "tableHeader";
+        setCell(c, "Gagnant de la Coupe");
+
+
+        for (var i=0; i < sortedPlayers.length-1; i++)
+        {
+            r = t.insertRow(-1);
+            c = r.insertCell(0);
+            setCell(c, sortedPlayers[i].name);
+            c = r.insertCell(1);
+            setCell(c, sortedPlayers[i].finalistWest + " vs. " + sortedPlayers[i].finalistEast);
+            c = r.insertCell(2);
+            setCell(c, sortedPlayers[i].cupWinner);
+        }
+
+
+
+        for(var i=this.bracket.rounds.length-1; i >= 0; i--)
+        {
+            r = t.insertRow(-1);
+            c = r.insertCell(0);
+            c.setAttribute("colspan", "4");
+            c.style.backgroundColor = "blue";
+            c.style.color = "yellow";
+            c.style.fontSize = "20pt";
+            setCell(c, "Round " + (i-0+1));
+
+
+
+            for(var j=0; j < this.bracket.rounds[i].length; j++)
+            {
+                r = t.insertRow(-1);
+                c = r.insertCell(0);
+                c.className = "tableHeader";
+                setCell(c, this.bracket.rounds[i][j][0]);
+                if (results.rounds[i].series[j] != undefined && results.rounds[i].series[j].winner == this.bracket.rounds[i][j][0])
+                {
+                    if (results.rounds[i].series[j].games != 0)
+                    {
+                        addToCell(c, " (Winner in " + results.rounds[i].series[j].games + ")");
+                    }
+                    else
+                    {
+                        addToCell(c, " (Lead the series)");
+                    }
+                }
+                c = r.insertCell(1);
+                c.className = "tableHeader";
+                setCell(c, "Nom des participants ayant choisit les " + this.bracket.rounds[i][j][0]);
+                c = r.insertCell(2);
+                c.className = "tableHeader";
+                setCell(c, this.bracket.rounds[i][j][1]);
+                if (results.rounds[i].series[j] != undefined && results.rounds[i].series[j].winner == this.bracket.rounds[i][j][1])
+                {
+                    if (results.rounds[i].series[j].games != 0)
+                    {
+                        addToCell(c, " (Winner in " + results.rounds[i].series[j].games + ")");
+                    }
+                    else
+                    {
+                        addToCell(c, " (Lead the series)");
+                    }
+                }
+
+                c = r.insertCell(3);
+                c.className = "tableHeader";
+                setCell(c, "Nom des participants ayant choisit les " + this.bracket.rounds[i][j][1]);
+
+                /* Displaying results */
+                for (var k=0; k < scores.rounds[i].scores.length; k++)
+                {
+                    if (scores.rounds[i].scores[k].name == this.bracket.rounds[i][j][0])
+                    {
+                        r = t.insertRow(-1);
+                        c = r.insertCell(0);
+                        c.className = "tableHeader";
+                        setCell(c, scores.rounds[i].scores[k].games);
+                    }
+                    if (scores.rounds[i].scores[k].name == this.bracket.rounds[i][j][1])
+                    {
+                        c = r.insertCell(1);
+                        c = r.insertCell(2);
+                        c.className = "tableHeader";
+                        setCell(c, scores.rounds[i].scores[k].games);
+                    }
+
+                }
+
+
+                var team1Select = new Array();
+                var team2Select = new Array();
+                for(var k=1; k < this.players.length; k++)
+                {
+                    for(var l = 0; l < this.players[k].rounds[i].series.length; l++)
+                    {
+                        if (this.players[k].rounds[i].series[l].winner == this.bracket.rounds[i][j][0])
+                        {
+                            team1Select.push(this.players[k].name + "(" + this.players[k].rounds[i].series[l].games + " games)(" + this.players[k].rounds[i].series[l].points + " points)");
+                        }
+                        if (this.players[k].rounds[i].series[l].winner == this.bracket.rounds[i][j][1])
+                        {
+                            team2Select.push(this.players[k].name + "(" + this.players[k].rounds[i].series[l].games + " games)(" + this.players[k].rounds[i].series[l].points + " points)");
+                        }
+                    }
+                }
+                for(var m=0; m < team1Select.length || m < team2Select.length; m++)
+                {
+                    r = t.insertRow(-1);
+                    c = r.insertCell(0);
+                    c.innerHTML =  "&nbsp;";
+                    c = r.insertCell(1);
+                    if (m < team1Select.length)
+                    {
+                        setCell(c, team1Select[m]);
+                    }
+                    else
+                    {
+                        setCell(c, "");
+                    }
+                    c = r.insertCell(2);
+                    c.innerHTML =  "&nbsp;";
+                    c = r.insertCell(3);
+                    if (m < team2Select.length)
+                    {
+                        setCell(c, team2Select[m]);
+                    }
+                    else
+                    {
+                        setCell(c, "");
+                    }
+                }
+                r = t.insertRow(-1);
+                c = r.insertCell(0);
+                c.setAttribute("colspan", "4");
+                c.style.backgroundColor = "black";
+                c.style.color = "yellow";
+                c.style.fontSize = "2pt";
+
+            }
+        }
+    }
+
+    this.bracket = new Bracket();
+
+}
+
+var Score = function (_n, _g)
+{
+    this.name = _n;
+    this.games = _g;
+}
+
+var init = function()
+{
+    pool.showPool();
+}
+
+var setCell = function(c, s)
+{
+    if(document.all)
+    {
+        c.innerText = s;
+    }
+    else
+    {
+        c.textContent = s;
+    }
+}
+
+var addToCell = function(c, s)
+{
+    if(document.all)
+    {
+        c.innerText += s;
+    }
+    else
+    {
+        c.textContent += s;
+    }
+}
+
+
+</script>
+<script language="javascript" src="results.js"></script>
+<script language="javascript" src="input.js"></script>
+</head>
+<body onload="init();">
+<table id="tableBracket">
+</table>
+<!--
+	<tr>
+		<td>Ducks</td>
+		<td colspan="14">&nbsp;</td>
+		<td>Bruin</td>
+	</tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>André-Claude (6)</td>
+        <td colspan="13">&nbsp;</td>
+        <td>André-Claude (5)</td>
+    </tr>
+    <tr>
+        <td>Stars</td>
+        <td colspan="14">&nbsp;</td>
+        <td>Red Wings</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>Eric  (6)</td>
+        <td colspan="13">&nbsp;</td>
+        <td>Eric (5)</td>
+    </tr>
+    <tr>
+        <td bgcolor="blue" colspan="16">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td bgcolor="yellow" colspan="13">&nbsp;</td>
+        <td colspan="1">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td bgcolor="yellow" colspan="13">&nbsp;</td>
+        <td colspan="1">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td bgcolor="yellow" colspan="13">&nbsp;</td>
+        <td colspan="1">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td>Round 2 Team 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Team 2</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+        <td colspan="10">&nbsp;</td>
+        <td>Round 2 Player 1</td>
+    </tr>
+    <tr>
+        <td bgcolor="blue" colspan="16">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+        <td>Round 3 Team 1</td>
+        <td colspan="6">&nbsp;</td>
+        <td>Round 3 Team 2</td>
+    </tr>
+    <tr>
+        <td bgcolor="blue" colspan="16">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+        <td>Round 3 Team 1</td>
+        <td colspan="6">&nbsp;</td>
+        <td>Round 3 Team 2</td>
+    </tr>
+
+
+</table>
+-->
+</body>
+</html>

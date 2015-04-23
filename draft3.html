@@ -1,0 +1,268 @@
+<html>
+<head>
+<script language="javascript" >
+var round=2;
+var goBave = false;
+
+var $ = function(n)
+{
+    return document.getElementById(n);
+}
+
+var createOutput = function(letter)
+{
+    goBave = false;
+    var retCode = validate(letter);
+
+    if (retCode == true)
+    {
+        goBave = true;
+        var ret = "/* round " + (round+1) + " for " + $("player").value + " " + letter + " */\n";
+
+        for(var i=1 ; i <= 2; i++)
+        {
+            ret += "tmp.rounds[" + round + "].series.push(new Series(\"" + $("winner" + i + letter).value + "\", " + $("games" + i + letter).value + ", " + $("points" + i + letter).value + "));\n";
+        }
+
+
+
+        $("output").value += ret;
+     }
+}
+
+var validate = function(letter)
+{
+    var valid;
+
+    if ($("player").value == "---")
+    {
+        alert("Choisissez un nom de joueur en haut de la page");
+        return false;
+    }
+
+    for(var i = 7; i <= 8; i++)
+    {
+        valid = false;
+        for(var j=1; j <= 2; j++)
+        {
+            if ($("points" + j + letter).value == i)
+            {
+                valid= true;
+            }
+        }
+
+        if (valid == false)
+        {
+            if (letter == "a")
+            {
+                alert(i + " points n'a pas été assigné si les Ducks gagnent.");
+            }
+            if (letter == "b")
+            {
+                alert(i + " points n'a pas été assigné si les Kings gagnent.");
+            }
+            return false;
+        }
+    }
+
+
+
+    return valid;
+}
+
+function bave()
+{
+    if (goBave == true)
+    {
+        if ($("player").value == "Carl")
+        {
+            alert("Ouf...  J'espère que tu ne comptais pas sur l'argent du pool pour faire un paiement de char?");
+        }
+        else if ($("player").value == "Mike")
+        {
+            alert("Are you going to play a round of golf with Lucic this weekend?");
+        }
+        else if ($("player").value == "Michèle")
+        {
+            alert("Tu n'as rien appris de la deuxième round?  Geese inclus toute la famille avant de faire tes choix...");
+        }
+        else if ($("player").value == "Christine")
+        {
+            alert("Je me dis que c'est ton doigt cassé qui t'as empêché de clicker sur les bon choix.");
+        }
+        else if ($("player").value == "Myriam")
+        {
+            alert("Belle petite Mimy...  Si proche de la première position mais en même temps si loin.  " +
+                  "Ça va prendre beaucoup de barbe-à-papa pour consoler ta grosse peine...");
+        }
+        else if ($("player").value == "Marie-Julie")
+        {
+            alert("Arrête de porter des talons aussi hauts, en regardant tes choix je me dis qu'il commence peut-être à manquer d'oxygène à cet altitue!");
+        }
+        else if ($("player").value == "Martin Labbe")
+        {
+            alert("Dommage que tu ne gagneras pas le pool.  Tu aurais pu utiliser l'argent pour te louer un locker pour aller cacher tes articles des Bruins.");
+        }
+        else if ($("player").value == "Jean-Philippe")
+        {
+            alert("Mffpff.... Mffpffmmfffm... Mffpffmmfffmmmmfff... BOUHAHAHAHAHAHAHAHAHAHA!!!!!!  Tordant comme choix!!!!");
+        }
+        else if ($("player").value == "Guillaume")
+        {
+            alert("Faut croire que la télé n'est pas encore rendu à Ormstown pis que tu n'as pas pu suivre les séries cette année. ");
+        }
+        else if ($("player").value == "Marie-Claude")
+        {
+            alert("Les trois 'C' de la ceinture noire n'ont surement pas été respectés!  Tu ne CONTRÔLAIT probablement pas ta souris.  " +
+                  "Tu ne peux pas prétendre d'avoir CONFIANCE en ces choix.  Viens pas me faire croire que tu étais CONCENTRER en  " +
+                  "choisissant tes équipes...");
+        }
+        else if ($("player").value == "André-Claude")
+        {
+            alert("André-Claude Paulin tu es le meilleur!  Tu es beau, intelligent, fort, sexy, drôle en sacrament " +
+                  "pis essentiel à l'évolution de la race humaine.  Ta présence dans ce pool en rehausse le niveau. " +
+                  "Le fait que tu fais profiter les autres de ton temps prouve ta générosité sans borne. Tes choix sont " +
+                  "fantastiques!!!!  Le fait que tu ne soit pas premier dans le pool est totalement inexplicable et " +
+                  "la preuve que tout n'est pas juste dans ce monde cruel.  Ton génie n'a d'égal que ta beauté, " +
+                  "ton charisme et ta perséverance.");
+        }
+    }
+}
+
+</script>
+</head>
+<body>
+    <select id="player">
+        <option value="---">---</option>
+        <option value="Christine">Christine</option>
+        <option value="Marie-Claude">Marie-Claude</option>
+        <option value="Marie-Julie">Marie-Julie</option>
+        <option value="Michèle">Michèle</option>
+        <option value="Myriam">Myriam</option>
+        <option value="Carl">Carl</option>
+        <option value="Martin Labbe">Martin Labbe</option>
+        <option value="Mike">Mike</option>
+        <option value="Jean-Philippe">Jean-Philippe</option>
+        <option value="Guillaume">Guillaume</option>
+        <option value="André-Claude">André-Claude</option>
+    </select>
+
+    </select>
+	<table border>
+        <tr>
+            <th>&nbsp;</th>
+            <th colspan="3">Si les Ducks Gagnent</th>
+            <th  rowspan="5">&nbsp;&nbsp;&nbsp;</th>
+            <th colspan="3">Si les Kings Gagnent</th>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Serie #1</td>
+            <td>
+                <select id="winner1a">
+                    <option value="Ducks">Ducks</option>
+                    <option value="Blackhawks">Blackhawks</option>
+                </select>
+            </td>
+            <td>
+                <select id="games1a">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points1a">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+            <td>
+                <select id="winner1b">
+                    <option value="Kings">Kings</option>
+                    <option value="Blackhawks">Blackhawks</option>
+                </select>
+            </td>
+            <td>
+                <select id="games1b">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points1b">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Serie #2</td>
+            <td>
+                <select id="winner2a">
+                    <option value="Canadiens">Canadiens</option>
+                    <option value="Rangers">Rangers</option>
+                </select>
+            </td>
+            <td>
+                <select id="games2a">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points2a">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+            <td>
+                <select id="winner2b">
+                    <option value="Canadiens">Canadiens</option>
+                    <option value="Rangers">Rangers</option>
+                </select>
+            </td>
+            <td>
+                <select id="games2b">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points2b">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="GO!" onclick="$('output').value = '';createOutput('a');createOutput('b');bave();" />
+<br/>
+<p>
+Copiez et envoyez à <a href="mailto:apaulin@videotron.ca">apaulin@videotron.ca</a>
+<br/>
+<textarea id="output" cols="80" rows="15">
+</textarea>
+
+</body>
+</html>

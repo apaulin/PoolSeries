@@ -1,0 +1,212 @@
+<html>
+<head>
+<script language="javascript" >
+var round=2;
+var goBave = false;
+
+var $ = function(n)
+{
+    return document.getElementById(n);
+}
+
+var createOutput = function(letter)
+{
+    goBave = false;
+    var retCode = validate(letter);
+
+    if (retCode == true)
+    {
+        goBave = true;
+        var ret = "/* round " + (round+1) + " for " + $("player").value + " " + letter + " */\n";
+
+        for(var i=1 ; i <= 2; i++)
+        {
+            ret += "tmp.rounds[" + round + "].series.push(new Series(\"" + $("winner" + i + letter).value + "\", " + $("games" + i + letter).value + ", " + $("points" + i + letter).value + "));\n";
+        }
+
+
+
+        $("output").value += ret;
+     }
+}
+
+var validate = function(letter)
+{
+    var valid;
+
+    if ($("player").value == "---")
+    {
+        alert("Choisissez un nom de joueur en haut de la page");
+        return false;
+    }
+
+    for(var i = 7; i <= 8; i++)
+    {
+        valid = false;
+        for(var j=1; j <= 2; j++)
+        {
+            if ($("points" + j + letter).value == i)
+            {
+                valid= true;
+            }
+        }
+
+        if (valid == false)
+        {
+            if (letter == "a")
+            {
+                alert(i + " points n'a pas été assigné si les Ducks gagnent.");
+            }
+            if (letter == "b")
+            {
+                alert(i + " points n'a pas été assigné si les Kings gagnent.");
+            }
+            return false;
+        }
+    }
+
+
+
+    return valid;
+}
+
+function bave()
+{
+    if (goBave == true)
+    {
+    }
+}
+
+</script>
+</head>
+<body>
+    <select id="player">
+        <option value="---">---</option>
+        <option value="André-Claude">André-Claude</option>
+        <option value="Martin Audet">Martin Audet</option>
+        <option value="Eric">Eric</option>
+        <option value="Dany">Dany</option>
+        <option value="André Charette">André Charette</option>
+        <option value="Marie-Ève">Marie-Ève</option>
+        <option value="Richard">Richard</option>
+    </select>
+
+    </select>
+	<table border>
+        <tr>
+            <th>&nbsp;</th>
+            <th colspan="3">Si les Ducks Gagnent</th>
+            <th  rowspan="5">&nbsp;&nbsp;&nbsp;</th>
+            <th colspan="3">Si les Kings Gagnent</th>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Serie #1</td>
+            <td>
+                <select id="winner1a">
+                    <option value="Ducks">Ducks</option>
+                    <option value="Blackhawks">Blackhawks</option>
+                </select>
+            </td>
+            <td>
+                <select id="games1a">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points1a">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+            <td>
+                <select id="winner1b">
+                    <option value="Kings">Kings</option>
+                    <option value="Blackhawks">Blackhawks</option>
+                </select>
+            </td>
+            <td>
+                <select id="games1b">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points1b">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+            <th>Gagnant</th>
+            <th>Nombres de Parties</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Serie #2</td>
+            <td>
+                <select id="winner2a">
+                    <option value="Canadiens">Canadiens</option>
+                    <option value="Rangers">Rangers</option>
+                </select>
+            </td>
+            <td>
+                <select id="games2a">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points2a">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+            <td>
+                <select id="winner2b">
+                    <option value="Canadiens">Canadiens</option>
+                    <option value="Rangers">Rangers</option>
+                </select>
+            </td>
+            <td>
+                <select id="games2b">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+            </td>
+            <td>
+                <select id="points2b">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                <select>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="GO!" onclick="$('output').value = '';createOutput('a');createOutput('b');bave();" />
+<br/>
+<p>
+Copiez et envoyez à <a href="mailto:apaulin@videotron.ca">apaulin@videotron.ca</a>
+<br/>
+<textarea id="output" cols="80" rows="15">
+</textarea>
+
+</body>
+</html>

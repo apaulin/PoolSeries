@@ -1,0 +1,14 @@
+open pages.videotron.ca
+vlxigbev
+3333tgo
+bin
+hash
+put pool.html
+put input.js
+put results.js
+put logo.gif
+put pool.html cie/pool.html
+put cie/input.js cie/input.js
+put results.js cie/results.js
+put logo.gif cie/logo.gif
+quit
