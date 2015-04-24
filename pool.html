@@ -17,8 +17,8 @@ body
 <link rel="shortcut icon" href="http://pages.videotron.com/acpaulin/favicon.ico" />
 <script language="javascript">
 
-var teams = new Array("---", "Blues", "Wild", "Predators", "Blackhawks", "Ducks", "Jets", "Canucks", "Flames",
-                      "Canadiens", "Senators", "Lightning", "Red Wings", "Rangers", "Penguins", "Capitals", "Islanders");
+var teams = new Array("---", "St-Louis", "Minnesota", "Nashville", "Chicago", "Anaheim", "Winnipeg", "Vancouver", "Calgary",
+                      "Montreal", "Ottawa", "Tampa Bay", "Detroit", "NY Rangers", "Pittsburgh", "Washington", "NY Islanders", "Boston");
 
 var $ = function(n)
 {
@@ -120,29 +120,29 @@ var Pool = function()
         this.rounds = new Array();
         this.rounds[0] = new Array();
         this.rounds[0][0] = new Array();
-        this.rounds[0][0][0] = "Blues";
-        this.rounds[0][0][1] = "Wild";
+        this.rounds[0][0][0] = "St-Louis";
+        this.rounds[0][0][1] = "Minnesota";
         this.rounds[0][1] = new Array();
-        this.rounds[0][1][0] = "Predators";
-        this.rounds[0][1][1] = "Blackhawks";
+        this.rounds[0][1][0] = "Nashville";
+        this.rounds[0][1][1] = "Chicago";
         this.rounds[0][2] = new Array();
-        this.rounds[0][2][0] = "Ducks";
-        this.rounds[0][2][1] = "Jets";
+        this.rounds[0][2][0] = "Anaheim";
+        this.rounds[0][2][1] = "Winnipeg";
         this.rounds[0][3] = new Array();
-        this.rounds[0][3][0] = "Canucks";
-        this.rounds[0][3][1] = "Flames";
+        this.rounds[0][3][0] = "Vancouver";
+        this.rounds[0][3][1] = "Calgary";
         this.rounds[0][4] = new Array();
-        this.rounds[0][4][0] = "Canadiens";
-        this.rounds[0][4][1] = "Senators";
+        this.rounds[0][4][0] = "Montreal";
+        this.rounds[0][4][1] = "Ottawa";
         this.rounds[0][5] = new Array();
-        this.rounds[0][5][0] = "Lightning";
-        this.rounds[0][5][1] = "Red Wings";
+        this.rounds[0][5][0] = "Tampa Bay";
+        this.rounds[0][5][1] = "Detroit";
         this.rounds[0][6] = new Array();
-        this.rounds[0][6][0] = "Rangers";
-        this.rounds[0][6][1] = "Penguins";
+        this.rounds[0][6][0] = "NY Rangers";
+        this.rounds[0][6][1] = "Pittsburgh";
         this.rounds[0][7] = new Array();
-        this.rounds[0][7][0] = "Capitals";
-        this.rounds[0][7][1] = "Islanders";
+        this.rounds[0][7][0] = "Washington";
+        this.rounds[0][7][1] = "NY Islanders";
 
     }
 
@@ -152,7 +152,7 @@ var Pool = function()
         for(var i=0; i< p.length; i++)
         {
             var nextIndex = -1;
-            var greatestValue = -1;
+            var greatestValue = -2;
             for(var j=0; j < p.length; j++)
             {
                 if (p[j].taken == undefined  && p[j].points > greatestValue)
