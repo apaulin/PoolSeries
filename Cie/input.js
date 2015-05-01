@@ -121,6 +121,12 @@ tmp.rounds[0].series.push(new Series('St-Louis', '6', '4'));
 tmp.rounds[0].series.push(new Series('Chicago', '7', '1'));
 tmp.rounds[0].series.push(new Series('Anaheim', '6', '6'));
 tmp.rounds[0].series.push(new Series('Calgary', '6', '3'));
+
+tmp.rounds[1].series.push(new Series('Montreal', '7', '5'));
+tmp.rounds[1].series.push(new Series('NY Rangers', '6', '7'));
+tmp.rounds[1].series.push(new Series('Chicago', '6', '6'));
+tmp.rounds[1].series.push(new Series('Anaheim', '5', '8'));
+
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'St-Louis';
 tmp.cupWinner = 'St-Louis';

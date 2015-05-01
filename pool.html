@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
 <html>
 <head>
 <style>
@@ -274,12 +275,12 @@ var Pool = function()
                     }
                     else
                     {
-                        addToCell(c, " (Lead the series)");
+                        addToCell(c, " (Mène dans la série)");
                     }
                 }
                 c = r.insertCell(1);
                 c.className = "tableHeader";
-                setCell(c, "Nom des participants ayant choisit les " + this.bracket.rounds[i][j][0]);
+                setCell(c, "Nom des participants ayant choisit " + this.bracket.rounds[i][j][0]);
                 c = r.insertCell(2);
                 c.className = "tableHeader";
                 setCell(c, this.bracket.rounds[i][j][1]);
@@ -291,13 +292,13 @@ var Pool = function()
                     }
                     else
                     {
-                        addToCell(c, " (Lead the series)");
+                        addToCell(c, " (Mène dans la série)");
                     }
                 }
 
                 c = r.insertCell(3);
                 c.className = "tableHeader";
-                setCell(c, "Nom des participants ayant choisit les " + this.bracket.rounds[i][j][1]);
+                setCell(c, "Nom des participants ayant choisit " + this.bracket.rounds[i][j][1]);
 
                 /* Displaying results */
                 for (var k=0; k < scores.rounds[i].scores.length; k++)

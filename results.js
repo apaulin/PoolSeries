@@ -12,9 +12,9 @@ results.rounds[0].series.push(new Series("Anaheim",  4, 0));
 results.rounds[0].series.push(new Series("Calgary", 6, 0));
 
 results.rounds[1].series.push(new Series("---", 0, 0)); // Montreal Tampa Bay
-results.rounds[1].series.push(new Series("---", 0, 0)); // NY Rangers Washington
+results.rounds[1].series.push(new Series("Washington", 0, 0)); // NY Rangers Washington
 results.rounds[1].series.push(new Series("---", 0, 0)); // Chicago Minnesota
-results.rounds[1].series.push(new Series("---", 0, 0)); // Anaheim  Calgary
+results.rounds[1].series.push(new Series("Anaheim", 0, 0)); // Anaheim  Calgary
 
 
 results.finalistEast = "---";
@@ -27,22 +27,22 @@ var scores = new Object();
 scores.rounds = new Array();
 scores.rounds[0] = new Object();
 scores.rounds[0].scores = new Array();
-scores.rounds[0].scores.push(new Score("Montreal", 3));
+scores.rounds[0].scores.push(new Score("Montreal", 4));
 scores.rounds[0].scores.push(new Score("Ottawa", 2));
-scores.rounds[0].scores.push(new Score("Tampa Bay", 2));
-scores.rounds[0].scores.push(new Score("Detroit", 2));
+scores.rounds[0].scores.push(new Score("Tampa Bay", 4));
+scores.rounds[0].scores.push(new Score("Detroit", 3));
 scores.rounds[0].scores.push(new Score("NY Rangers", 4));
 scores.rounds[0].scores.push(new Score("Pittsburgh", 1));
-scores.rounds[0].scores.push(new Score("Washington", 3));
-scores.rounds[0].scores.push(new Score("NY Islanders", 2));
+scores.rounds[0].scores.push(new Score("Washington", 4));
+scores.rounds[0].scores.push(new Score("NY Islanders", 3));
 scores.rounds[0].scores.push(new Score("St-Louis", 2));
-scores.rounds[0].scores.push(new Score("Minnesota", 3));
+scores.rounds[0].scores.push(new Score("Minnesota", 4));
 scores.rounds[0].scores.push(new Score("Nashville", 2));
-scores.rounds[0].scores.push(new Score("Chicago", 3));
+scores.rounds[0].scores.push(new Score("Chicago", 4));
 scores.rounds[0].scores.push(new Score("Anaheim", 4));
 scores.rounds[0].scores.push(new Score("Winnipeg", 0));
 scores.rounds[0].scores.push(new Score("Vancouver", 2));
-scores.rounds[0].scores.push(new Score("Calgary", 3));
+scores.rounds[0].scores.push(new Score("Calgary", 4));
 
 
 scores.rounds[1] = new Object();

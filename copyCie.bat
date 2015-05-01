@@ -1,4 +1,4 @@
-copy results.js T:\ACP\
-copy cie\input.js T:\ACP\
-copy pool.html T:\ACP\
-copy logo.gif T:\ACP\
+copy results.js T:\ACP\Pool2015
+copy cie\input.js T:\ACP\Pool2015
+copy pool.html T:\ACP\Pool2015
+copy logo.gif T:\ACP\Pool2015
