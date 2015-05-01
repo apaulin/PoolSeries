@@ -144,6 +144,20 @@ var Pool = function()
         this.rounds[0][7][0] = "Washington";
         this.rounds[0][7][1] = "NY Islanders";
 
+        this.rounds[1] = new Array();
+        this.rounds[1][0] = new Array();
+        this.rounds[1][0][0] = "Montreal";
+        this.rounds[1][0][1] = "Tampa Bay";
+        this.rounds[1][1] = new Array();
+        this.rounds[1][1][0] = "NY Rangers";
+        this.rounds[1][1][1] = "Washington";
+        this.rounds[1][2] = new Array();
+        this.rounds[1][2][0] = "Chicago";
+        this.rounds[1][2][1] = "Minnesota";
+        this.rounds[1][3] = new Array();
+        this.rounds[1][3][0] = "Anaheim";
+        this.rounds[1][3][1] = "Calgary";
+ 
     }
 
     this.sort = function(p)
@@ -180,7 +194,7 @@ var Pool = function()
         c.style.backgroundColor = "blue";
         c.style.color = "yellow";
         c.style.fontSize = "20pt";
-        setCell(c, "Résultats (Pointage) " + lastUpdated);
+        setCell(c, "RÃ©sultats (Pointage) " + lastUpdated);
 
         r = t.insertRow(-1);
         c = r.insertCell(0);
@@ -414,9 +428,9 @@ var addToCell = function(c, s)
 	</tr>
     <tr>
         <td>&nbsp;</td>
-        <td>André-Claude (6)</td>
+        <td>Andrï¿½-Claude (6)</td>
         <td colspan="13">&nbsp;</td>
-        <td>André-Claude (5)</td>
+        <td>Andrï¿½-Claude (5)</td>
     </tr>
     <tr>
         <td>Stars</td>
