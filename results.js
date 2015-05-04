@@ -1,5 +1,5 @@
 var pool = new Pool();
-var lastUpdated = "1 mai 2015";
+var lastUpdated = "4 mai 2015";
 
 var results = pool.addPlayer("Results");
 results.rounds[0].series.push(new Series("Montreal", 6, 0));
@@ -11,9 +11,9 @@ results.rounds[0].series.push(new Series("Chicago", 6, 0));
 results.rounds[0].series.push(new Series("Anaheim",  4, 0));
 results.rounds[0].series.push(new Series("Calgary", 6, 0));
 
-results.rounds[1].series.push(new Series("---", 0, 0)); // Montreal Tampa Bay
-results.rounds[1].series.push(new Series("Washington", 0, 0)); // NY Rangers Washington
-results.rounds[1].series.push(new Series("---", 0, 0)); // Chicago Minnesota
+results.rounds[1].series.push(new Series("Tampa Bay", 0, 0)); // Montreal Tampa Bay
+results.rounds[1].series.push(new Series("---", 0, 0)); // NY Rangers Washington
+results.rounds[1].series.push(new Series("Chicago", 0, 0)); // Chicago Minnesota
 results.rounds[1].series.push(new Series("Anaheim", 0, 0)); // Anaheim  Calgary
 
 
@@ -48,12 +48,12 @@ scores.rounds[0].scores.push(new Score("Calgary", 4));
 scores.rounds[1] = new Object();
 scores.rounds[1].scores = new Array();
 scores.rounds[1].scores.push(new Score("Montreal", 0));
-scores.rounds[1].scores.push(new Score("Tampa Bay", 0));
-scores.rounds[1].scores.push(new Score("NY Rangers", 0));
+scores.rounds[1].scores.push(new Score("Tampa Bay", 2));
+scores.rounds[1].scores.push(new Score("NY Rangers", 1));
 scores.rounds[1].scores.push(new Score("Washington", 1));
-scores.rounds[1].scores.push(new Score("Chicago", 0));
+scores.rounds[1].scores.push(new Score("Chicago", 2));
 scores.rounds[1].scores.push(new Score("Minnesota", 0));
-scores.rounds[1].scores.push(new Score("Anaheim", 1));
+scores.rounds[1].scores.push(new Score("Anaheim", 2));
 scores.rounds[1].scores.push(new Score("Calgary", 0));
 
 	
