@@ -20,6 +20,9 @@ tmp.rounds[1].series.push(new Series('NY Rangers', '5', '7'));
 tmp.rounds[1].series.push(new Series('Chicago', '5', '8'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '5'));
 
+tmp.rounds[2].series.push(new Series('NY Rangers', '5', '7'));
+tmp.rounds[2].series.push(new Series('Anaheim', '6', '8'));
+
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'Anaheim';
 tmp.cupWinner = 'NY Rangers';
@@ -41,6 +44,9 @@ tmp.rounds[1].series.push(new Series('Montreal', '7', '6'));
 tmp.rounds[1].series.push(new Series('NY Rangers', '6', '5'));
 tmp.rounds[1].series.push(new Series('Chicago', '7', '7'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '8'));
+
+tmp.rounds[2].series.push(new Series('Tampa Bay', '6', '7'));
+tmp.rounds[2].series.push(new Series('Chicago', '6', '8'));
 
 tmp.finalistEast = 'Montreal';
 tmp.finalistWest = 'Chicago';
@@ -64,6 +70,9 @@ tmp.rounds[1].series.push(new Series('NY Rangers', '5', '8'));
 tmp.rounds[1].series.push(new Series('Chicago', '6', '7'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '6'));
 
+tmp.rounds[2].series.push(new Series('Tampa Bay', '7', '7'));
+tmp.rounds[2].series.push(new Series('Anaheim', '7', '8'));
+
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'Anaheim';
 tmp.cupWinner = 'Anaheim';
@@ -85,6 +94,9 @@ tmp.rounds[1].series.push(new Series('Montreal', '7', '5'));
 tmp.rounds[1].series.push(new Series('NY Rangers', '6', '8'));
 tmp.rounds[1].series.push(new Series('Chicago', '6', '6'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '7'));
+
+tmp.rounds[2].series.push(new Series('NY Rangers', '7', '7'));
+tmp.rounds[2].series.push(new Series('Chicago', '7', '8'));
 
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'Chicago';
@@ -108,6 +120,9 @@ tmp.rounds[1].series.push(new Series('NY Rangers', '6', '7'));
 tmp.rounds[1].series.push(new Series('Chicago', '6', '6'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '8'));
 
+tmp.rounds[2].series.push(new Series('NY Rangers', '6', '8'));
+tmp.rounds[2].series.push(new Series('Anaheim', '6', '7'));
+
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'Anaheim';
 tmp.cupWinner = 'Anaheim';
@@ -129,6 +144,9 @@ tmp.rounds[1].series.push(new Series('Montreal', '6', '7'));
 tmp.rounds[1].series.push(new Series('NY Rangers', '5', '8'));
 tmp.rounds[1].series.push(new Series('Chicago', '6', '5'));
 tmp.rounds[1].series.push(new Series('Anaheim', '6', '6'));
+
+tmp.rounds[2].series.push(new Series('Tampa Bay', '6', '7'));
+tmp.rounds[2].series.push(new Series('Anaheim', '6', '8'));
 
 tmp.finalistEast = 'Montreal';
 tmp.finalistWest = 'Nashville';
@@ -152,6 +170,9 @@ tmp.rounds[1].series.push(new Series('NY Rangers', '6', '8'));
 tmp.rounds[1].series.push(new Series('Minnesota', '6', '5'));
 tmp.rounds[1].series.push(new Series('Anaheim', '5', '7'));
 
+tmp.rounds[2].series.push(new Series('NY Rangers', '6', '8'));
+tmp.rounds[2].series.push(new Series('Anaheim', '7', '7'));
+
 tmp.finalistEast = 'NY Rangers';
 tmp.finalistWest = 'Nashville';
 tmp.cupWinner = 'NY Rangers';
@@ -174,6 +195,9 @@ tmp.rounds[1].series.push(new Series('NY Rangers', '6', '7'));
 tmp.rounds[1].series.push(new Series('Minnesota', '6', '6'));
 tmp.rounds[1].series.push(new Series('Anaheim', '7', '8'));
 
+tmp.rounds[2].series.push(new Series('NY Rangers', '7', '8'));
+tmp.rounds[2].series.push(new Series('Chicago', '5', '7'));
+
 tmp.finalistEast = 'Montreal';
 tmp.finalistWest = 'Anaheim';
 tmp.cupWinner = 'Montreal';
@@ -195,6 +219,9 @@ tmp.rounds[1].series.push(new Series('Montreal', '6', '8'));
 tmp.rounds[1].series.push(new Series('NY Rangers', '6', '5'));
 tmp.rounds[1].series.push(new Series('Chicago', '7', '6'));
 tmp.rounds[1].series.push(new Series('Calgary', '7', '7'));
+
+tmp.rounds[2].series.push(new Series('Tampa Bay', '6', '7'));
+tmp.rounds[2].series.push(new Series('Chicago', '5', '8'));
 
 tmp.finalistEast = 'Montreal';
 tmp.finalistWest = 'Calgary';
